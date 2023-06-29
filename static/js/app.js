@@ -14,8 +14,7 @@ function init() {
 
   // Get sample names and populate the drowdown
   d3.json(url).then((data) => {
-    console.log("Data : ${data}");
-
+    
     // Create an array of id names
     let names = data.names;
 
@@ -175,6 +174,7 @@ function buildGuage(selectedSample) {
 
     // Filter the data because the metadata id is in integer and samplevalue is string type
     let value = metadata.filter(meta => meta.id == selectedSample);
+    console.log(value)
 
     // Access the index 0 from the array
     let dataValue = value[0];
@@ -190,21 +190,24 @@ function buildGuage(selectedSample) {
         font: {color: "black", size: 16}
     },      
     type: "indicator",
-    mode: "gauge+number",            
+    mode: "gauge+number", 
+    
+          
     gauge: {
-        axis: {range: [0, 10], tickmode: "linear", tick0: 2, dtick: 2},
-        bar: {color: "steelblue"},
+        axis: {range: [0, 10], tickmode: "needle", tick0: 2, dtick: 2},
+        bar: {color: "red"},
+        
         steps: [
-            {range: [0, 1], color: "white"},
-            {range: [1, 2], color: "whitesmoke"},
-            {range: [2, 3], color: "white"},
-            {range: [3, 4], color: "whitesmoke"},
-            {range: [4, 5], color: "white"},
-            {range: [5, 6], color: "whitesmoke"},
-            {range: [6, 7], color: "white"},
-            {range: [7, 8], color: "whitesmoke"},
-            {range: [8, 9], color: "white"},
-            {range: [9, 10], color: "whitesmoke"},
+          {range: [0, 1], color: "rgba(255, 255, 255, 0)"},
+          {range: [1, 2], color: "rgba(232, 226, 202, .5)"},
+          {range: [2, 3], color: "rgba(210, 206, 145, .5)"},
+          {range: [3, 4], color:  "rgba(202, 209, 95, .5)"},
+          {range: [4, 5], color:  "rgba(184, 205, 68, .5)"},
+          {range: [5, 6], color: "rgba(170, 202, 42, .5)"},
+          {range: [6, 7], color: "rgba(142, 178, 35 , .5)"},
+          {range: [7, 8], color:  "rgba(110, 154, 22, .5)"},
+          {range: [8, 9], color: "rgba(50, 143, 10, 0.5)"},
+          {range: [9, 10], color: "rgba(14, 127, 0, .5)"},
         ]
     }
 };
@@ -219,12 +222,13 @@ let layout = {
 // call Plotly to plot the gauge chart on the page
 Plotly.newPlot("gauge", [guageTrace], layout);
 });
+
 };
 
 
 //// Function which updates the dashboard when a new sample is selected ////
 ///---------------------------------------------------------------------//// 
-function optionChange(selectedSample) {
+function optionChanged(selectedSample) {
 
   // log the new value
   console.log(selectedSample);
@@ -238,4 +242,5 @@ function optionChange(selectedSample) {
 
 // call th einitialize funcion
 init();
+
 
