@@ -186,7 +186,7 @@ function buildGuage(selectedSample) {
       domain: {x: [0,1], y: [0,1]},
       value: washFreq,
       title: {
-        text: "<b>Belly Button Cleaning Frequency</b><br>(number of times per week)",
+        text: "<b>Belly Button Cleaning Frequency</b><br>(Scrubs per Week)",
         font: {color: "black", size: 16}
     },      
     type: "indicator",
